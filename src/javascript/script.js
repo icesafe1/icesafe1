@@ -1,0 +1,1 @@
+winsow.alaert('olko meu')
