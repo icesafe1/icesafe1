@@ -37,10 +37,10 @@ body {
     color: white;
     padding: 10px 20px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 50px;
     transition: background-color 0.3s ease;
 }
 
 .action-btn:hover {
-    background-color: #d73831;
+    background-color: #edd529;
 }
