@@ -1,35 +1,3 @@
-// Aula 05
-// Criar a variável modalKey será global
-let modalKey = 0;
-
-// Variável para controlar a quantidade inicial de pizzas na modal
-let quantPizzas = 1;
-
-let cart = []; // Carrinho
-
-// Funções auxiliares ou úteis
-const seleciona = (elemento) => document.querySelector(elemento);
-const selecionaTodos = (elemento) => document.querySelectorAll(elemento);
-
-const formatoReal = (valor) => {
-    return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-};
-
-const abrirModal = () => {
-    seleciona('.pizzaWindowArea').style.opacity = 0; // Transparente
-    seleciona('.pizzaWindowArea').style.display = 'flex';
-    setTimeout(() => seleciona('.pizzaWindowArea').style.opacity = 1, 150);
-};
-
-const fecharModal = () => {
-    seleciona('.pizzaWindowArea').style.opacity = 0; // Transparente
-    setTimeout(() => seleciona('.pizzaWindowArea').style.display = 'none', 500);
-};
-
-const botoesFechar = () => {
-    // Botões fecha modal
-    selecionaTodos('.pizzaInfo--cancelButton, .pizzaInfo--cancelMobileButton').forEach((item) => item.addEventListener('click', fecharModal));
-};
 
 const preencheDadosDasPizzas = (pizzaItem, item, index) => {
     // Aula 05
