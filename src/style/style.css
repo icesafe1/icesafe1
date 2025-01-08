@@ -25,11 +25,10 @@ body {
     margin: 0 auto;
 }
 
-.logo a {
-    font-size: 24px;
-    font-weight: bold;
-    color: white;
-    text-decoration: none;
+.logo  {
+    
+    width: 100px;
+    height: 100px;
 }
 
 .action-btn {
@@ -42,5 +41,10 @@ body {
 }
 
 .action-btn:hover {
-    background-color: #edd529;
+    background-color:#1b5578 ;
 }
+.carro {
+    width: 50px;
+    height: 50px;
+  }
+  
