@@ -14,7 +14,7 @@ body {
 .site-header {
     background-color: #85cef8;
     color: white;
-    padding: 10px 20px;
+    padding: 1px 1px;
 }
 
 .container {
@@ -27,13 +27,36 @@ body {
 
 .logo  {
     
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
 }
 
 
 .carro {
-    width: 50px;
-    height: 50px;
-  }
-  
+    width: 80px;
+    height: 80px;
+}
+.gela {
+    
+    margin: 3px;
+    float: right;
+    width: 50%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 10px;
+    transform: translateX(-20%); 
+}
+
+.gela{
+    width: 50%; 
+    max-width: 450px; 
+    height: auto; 
+    border-radius: 10px;
+    margin-left: -15px;
+}
+.letra{
+display: flex;
+margin: 40px;
+max-width: 550px;
+
+}
