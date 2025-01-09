@@ -1,4 +1,6 @@
+@import url('https://fonts.google.com/share?selection.family=Open+Sans:ital,wght@0,300..800;1,300..800|PT+Serif:ital,wght@0,400;0,700;1,400;1,700');
 *
+
  {
     margin: 0;
     padding: 0;
@@ -9,7 +11,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     line-height: 1.6;
     color: #333;
-    background-color: #1b5578;
+    background-color: #f1f1f1;
 }
 
 .site-header {
@@ -146,4 +148,115 @@ body {
     transform: scale(1.1);
     transition: transform 0.3s ease;
   }
-  
+  /* Estilo geral do card */
+/* Resetando margens e padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Garantir que o body e html ocupem 100% da tela */
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+/* Resetando margens e padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Garantir que o body e html ocupem 100% da tela */
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+/* Estilo geral do card com flexbox para alinhar imagem à esquerda e conteúdo à direita */
+/* Resetando margens e padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Garantir que o body e html ocupem 100% da tela */
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+/* Resetando margens e padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Garantir que o body e html ocupem 100% da tela */
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+/* Estilo geral do card com flexbox para alinhar imagem à direita e conteúdo à esquerda */
+.card {
+    display: flex;
+    flex-direction: row-reverse; /* Invertido para imagem à direita */
+    justify-content: center;
+    align-items: center;
+    height: 450px;
+    width: 100%;
+    border-radius: 0px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #1b5578;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Removendo o efeito hover que fazia o card "levantar" */
+.card:hover {
+    transform: none;
+}
+
+/* Estilo da imagem do card */
+.card-image {
+    flex: 1;
+    height: 500px;
+}
+
+.card-image img {
+    width: 500px;
+    height: 500px;
+    max-height: 100%;
+    margin-right: 0px;
+}
+
+/* Conteúdo do card */
+.card-content {
+    flex: 1;
+    padding: 15px;
+    text-align: left;
+}
+
+.card-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+}
+
+/* Adicionando um efeito suave no card */
+.card-content p {
+    font-size: 18px;
+    color: #777;
+    margin-top: 20px;
+}
