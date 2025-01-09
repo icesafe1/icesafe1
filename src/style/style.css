@@ -50,9 +50,9 @@ body {
 .gela{
     width: 50%; 
     max-width: 450px; 
-    height: auto; 
+    height: 500px; 
     border-radius: 10px;
-    margin-left: -15px;
+    margin-left: auto;
 }
 .letra{
 display: flex;
