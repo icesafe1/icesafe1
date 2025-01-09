@@ -54,9 +54,87 @@ body {
     border-radius: 10px;
     margin-left: -15px;
 }
-.letra{
+.letra {
 display: flex;
 margin: 40px;
 max-width: 550px;
-
 }
+
+body {
+    margin: 0; 
+    height: 100vh; 
+  }
+  
+  /* LOREN - BOTÃO CARRINHO */
+  /* style.css */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Estilos para o botão */
+  #imageButton {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+  }
+  
+  #imageButton img {
+    width: 50px; /* Tamanho da imagem do botão */
+    height: auto;
+  }
+  
+  /* Estilo para a barra lateral (carrinho) */
+  .side-panel {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    color: white;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    z-index: 9999;
+  }
+  
+  .side-panel .cart-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #333;
+  }
+  
+  .side-panel .cart-header h2 {
+    margin: 0;
+  }
+  
+  .side-panel .cart-header button {
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  .side-panel .cart-content {
+    padding: 20px;
+    margin-top: 20px;
+  }
+  
+  /* Estilo quando a barra lateral estiver visível */
+  .side-panel.open {
+    width: 300px;
+  }
+  
+  /* Efeito de hover para o botão */
+  #imageButton:hover img {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+  }
+  
