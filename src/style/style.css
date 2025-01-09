@@ -75,13 +75,13 @@ body {
   }
   
   /* LOREN - BOTÃO CARRINHO */
-  /* style.css */
+  
 body {
     margin: 0;
     font-family: Arial, sans-serif;
   }
   
-  /* Estilos para o botão */
+
   #imageButton {
     background-color: transparent;
     border: none;
@@ -93,11 +93,11 @@ body {
   }
   
   #imageButton img {
-    width: 50px; /* Tamanho da imagem do botão */
+    width: 80px; 
     height: auto;
   }
   
-  /* Estilo para a barra lateral (carrinho) */
+ 
   .side-panel {
     height: 100%;
     width: 0;
@@ -136,14 +136,82 @@ body {
     margin-top: 20px;
   }
   
-  /* Estilo quando a barra lateral estiver visível */
+ 
   .side-panel.open {
     width: 300px;
   }
   
-  /* Efeito de hover para o botão */
+  
   #imageButton:hover img {
     transform: scale(1.1);
     transition: transform 0.3s ease;
   }
+
   
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -300px; 
+    width: 300px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.3);
+    transition: right 0.3s ease;
+    padding: 20px;
+    z-index: 1000;
+}
+
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-header h3 {
+    margin: 0;
+}
+
+.close-cart {
+    font-size: 20px;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+
+.cart-items {
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.cart-footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.pay-pix {
+    padding: 10px 20px;
+    background-color: #000000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+.cart-sidebar.open {
+    right: 0;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+button {
+    cursor: pointer;
+}
+
+
