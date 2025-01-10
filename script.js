@@ -1,14 +1,3 @@
-
-const preencheDadosDasPizzas = (pizzaItem, item, index) => {
-    // Aula 05
-    // Setar um atributo para identificar qual elemento foi clicado
-    pizzaItem.setAttribute('data-key', index);
-    pizzaItem.querySelector('.pizza-item--img img').src = item.img;
-    pizzaItem.querySelector('.pizza-item--price').innerHTML = formatoReal(item.price[2]);
-    pizzaItem.querySelector('.pizza-item--name').innerHTML = item.name;
-    pizzaItem.querySelector('.pizza-item--desc').innerHTML = item.description;
-};
-
 const preencheDadosModal = (item) => {
     seleciona('.pizzaBig img').src = item.img;
     seleciona('.pizzaInfo h1').innerHTML = item.name;
