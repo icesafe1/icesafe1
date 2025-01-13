@@ -1,124 +1,101 @@
 let modalKey = 0;
-
-let quant = 1;
-
+let quantItens = 1;
 let cart = []; // carrinho
 
-//funções auxiliares
-const seleciona = (elemento ) => document.querySelector(elemento);
-const selecionaTodos = (elemanto) => documento.querySelectorAll(elemento);
+// Funções auxiliares
+const seleciona = (elemento) => document.querySelector(elemento);
+const selecionaTodos = (elemento) => document.querySelectorAll(elemento);
 
 const formatoReal = (valor) => {
-    return valor.toLocalString('pr-BR', {style: 'currency', currency: 'BRL' });
+    return valor.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
 };
 
+// Abrir e fechar o modal
 const abrirModal = () => {
-    seleciona('.windowArea').style.opacity = 0; //controla a transparencia
+    seleciona('.windowArea').style.opacity = 0; // Controla a transparência
     seleciona('.windowArea').style.display = 'flex';
     setTimeout(() => seleciona('.windowArea').style.opacity = 1, 150);
 };
 
 const fecharModal = () => {
-    seleciona('.windowArea').style.opacity = 0; //msm coisa do ultiumo comentario 
+    seleciona('.windowArea').style.opacity = 0; 
     setTimeout(() => seleciona('.windowArea').style.display = 'none', 500);
 };
 
-const botoesFechar = () => {
-    //fechar o modal 
-    selecionaTodos('.info--cancelButton, .info--cancelmobileButton').forEach((item) => item.addEvent('click', fecharModal));
-};
-
-const preencheDados =(TItem, item, index) => {
-    TItem.setAttribute('data-key', index);
-    TItem.querySelector('.item--img img').src = item.img;
-    TItem.querySelector('.item--price').innerHTML = formatoReal(item.price[2]);
-    TItem.querySelector('.item--name').innerHTML = item.name;
-    TItem.querySelector('.item--desc').innerHTML = item.description;
-};
-
+// Função para preencher os dados do item no modal
 const preencheDadosModal = (item) => {
-    seleciona('.alt img').src = item.img;
-    seleciona('.info h1').innerHTML = item.name;
-    seleciona('info--desc').innerHTML = item.description;
-    seleciona('info--actualPrice').innerHTML  = formatoReal(item.price[2]);
+    seleciona('.windowArea .item--img img').src = item.img;
+    seleciona('.windowArea .item--name').innerHTML = item.name;
+    seleciona('.windowArea .item--desc').innerHTML = item.description;
+    seleciona('.windowArea .item--price').innerHTML = formatoReal(item.price[2]);
+    seleciona('.windowArea .item--quantity').value = quantItens;
+    seleciona('.windowArea .item--total').innerHTML = formatoReal(item.price[2] * quantItens);
 };
 
-const pegarKey = (e) =>{
+// Função para pegar a chave do item e mostrar o modal
+const pegarKey = (e) => {
     let key = e.target.closest('.-item').getAttribute('data-key');
-    console.log('Item clicado' + key);
-    console.log(itensJson[Key]);
-
-    //Garante que o número inicial é 1
-    quantItens = 1;
-
     modalKey = key;
-
-    return key;
+    preencheDadosModal(itensJson[modalKey]);
+    abrirModal();
 };
 
+// Função para mudar a quantidade no modal
 const mudarQuantidade = () => {
-    seleciona('.info--qtmais').addEventListener('click', () =>{
+    seleciona('.info--qtmais').addEventListener('click', () => {
         quantItens++;
-        seleciona('.info--qt').innerHTML = quant;
-    })
+        seleciona('.info--qt').innerHTML = quantItens;
+        seleciona('.windowArea .item--total').innerHTML = formatoReal(itensJson[modalKey].price[2] * quantItens);
+    });
 
     seleciona('.info--qtmenos').addEventListener('click', () => {
         if (quantItens > 1) {
             quantItens--;
-            seleciona('.info--qt').innerHTML = quantItens
+            seleciona('.info--qt').innerHTML = quantItens;
+            seleciona('.windowArea .item--total').innerHTML = formatoReal(itensJson[modalKey].price[2] * quantItens);
         }
-    })
+    });
 };
 
+// Função para adicionar o item ao carrinho
 const adicionarNoCarrinho = () => {
-    seleciona('info--addButton').addEventListener('click', () => {
-        console.log("Item " + modalKey);
-
-        console.log("Quantidade " + quantItens);
-
-        //preço
-        let price = seleciona('info--actualPrice').innerHTML.replace('R$nbsp;', '');
-
-        let identificador = itensJson[modalKey].id + 't' + size;
+    seleciona('.info--addButton').addEventListener('click', () => {
+        let price = seleciona('.windowArea .item--price').innerHTML.replace('R$', '').trim();
+        let identificador = itensJson[modalKey].id;
 
         let key = cart.findIndex((item) => item.identificador === identificador);
-        console.log(key);
 
         if (key > -1) {
             cart[key].qt += quantItens;
-        }
-        else {
+        } else {
             let produto = {
                 identificador,
                 id: itensJson[modalKey].id,
-                qt: quantItens, 
+                qt: quantItens,
                 price: parseFloat(price)
             };
             cart.push(produto);
-            console.log(produto);
-            console.log('Sub total R$' + (produto.qt * item.price).toFixed(2));
         }
         fecharModal();
-        abrirCarrinho();
         atualizarCarrinho();
     });
 };
 
+// Função para abrir o carrinho
 const abrirCarrinho = () => {
-    console.log('Qtd de itens no carrinho ' + cart.length);
     if (cart.length > 0) {
         seleciona('aside').classList.add('show');
         seleciona('header').style.display = 'flex';
     }
-    
     seleciona('.menu-openner').addEventListener('click', () => {
-        if (cart.length > 0){
+        if (cart.length > 0) {
             seleciona('aside').classList.add('show');
             seleciona('aside').style.left = '0';
         }
     });
 };
 
+// Função para fechar o carrinho
 const fecharCarrinho = () => {
     seleciona('.menu-closer').addEventListener('click', () => {
         seleciona('aside').style.left = '100vw';
@@ -126,75 +103,98 @@ const fecharCarrinho = () => {
     });
 };
 
-const atiualizaCarrinho = () => {
+// Função para atualizar o carrinho
+const atualizarCarrinho = () => {
     seleciona('.menu-openner span').innerHTML = cart.length;
 
     if (cart.length > 0) {
         seleciona('aside').classList.add('show');
-
-        seleciona('cart').innerHTML = '';
+        seleciona('.cart').innerHTML = '';
 
         let subtotal = 0;
-        let desconto = 0;
         let total = 0;
 
-        for (let i in cart) {
-
-            let item = itensJson.find((item) => item.id == cart[i].id);
-            console.log(item);
-
-            subtotal += cart[1].price * cart[i].qt;
+        cart.forEach((item) => {
+            let produto = itensJson.find((itemJson) => itemJson.id == item.id);
+            subtotal += item.price * item.qt;
 
             let cartItem = seleciona('.models .cart--item').cloneNode(true);
             seleciona('.cart').append(cartItem);
 
-            let sizeName = cart[i].size;
-
-            let itemName = `${item.name} (${sizeName})`;
-
-            cartItem.querySelector('img').src = item.img;
-            cartItem.querySelector('.cart--item-nome').innerHTML = itemName;
-            cartItem.querySelector('.cart--item--qt').innerHTML = cart[i].qt;
+            cartItem.querySelector('.cart--item-nome').innerHTML = produto.name;
+            cartItem.querySelector('.cart--item--qt').innerHTML = item.qt;
 
             cartItem.querySelector('.cart--item-qtmais').addEventListener('click', () => {
-
-                cart[i].qt++;
-
+                item.qt++;
                 atualizarCarrinho();
             });
 
-            cartItem.querySelector('.cart--item-qtmenos').addEventListener('click', () =>{
-                console.log('Clicou no botão menos');
-                if (cart[i].qt > 1) {
-                    cart[i].qt--;
+            cartItem.querySelector('.cart--item-qtmenos').addEventListener('click', () => {
+                if (item.qt > 1) {
+                    item.qt--;
+                } else {
+                    cart.splice(cart.indexOf(item), 1);
                 }
-                else {
-                    cart.splice(i, 1);
-                }
-
-                (cart.length < 1) ? seleciona("header").style.display = 'flex' : '';
-
-                atualizaCarrinho();
+                atualizarCarrinho();
             });
+        });
 
-            seleciona('.cart').append(cartItem);
-        }
-
-        desconto = subtotal * 0;
-        total = subtotal - desconto;
-
-        // Exibir na tela os resultados
-        // Selecionar o último span do elemento
+        total = subtotal;
         seleciona('.subtotal span:last-child').innerHTML = formatoReal(subtotal);
-        seleciona('.desconto span:last-child').innerHTML = formatoReal(desconto);
         seleciona('.total span:last-child').innerHTML = formatoReal(total);
-
     } else {
         seleciona('aside').classList.remove('show');
         seleciona('aside').style.left = '100vw';
     }
 };
 
-const finalizarCompra = () => {
-    //linha 231
+// Função de exemplo para adicionar um item ao carrinho ao carregar a página
+document.addEventListener('DOMContentLoaded', () => {
+    addItemToCart("Produto Exemplo");
+});
+
+// Função para adicionar o item ao carrinho (exemplo)
+function addItemToCart(itemName) {
+    const item = {
+        name: itemName,
+        price: [0, 0, 99.99],  // Simulando um preço
+        img: "img/produto.jpg",  // Exemplo de imagem
+        description: "Descrição do Produto",
+        id: 1  // ID do produto
+    };
+    cart.push(item);
+    atualizarCarrinho();  // Atualiza a interface do carrinho
 }
+
+// Lógica para abrir e fechar o carrinho a partir do botão de imagem
+const cartButton = document.getElementById('imageButton');
+const cartSidebar = document.getElementById('cartSidebar');
+const closeCartButton = document.getElementById('closeCart');
+
+//abrir o carrinho
+cartButton.addEventListener('click', () => {
+    cartSidebar.classList.add('open');
+});
+
+// fechar o carrinho 
+closeCartButton.addEventListener('click', () => {
+    cartSidebar.classList.remove('open');
+});
+
+
+
+function addItemToCart(item) {
+    const cartItemsDiv = cartSidebar.querySelector('.cart-items');
+    const itemElement = document.createElement('p');
+    itemElement.textContent = item;
+    cartItemsDiv.appendChild(itemElement);
+}
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    addItemToCart("Produto Exemplo");
+});
+
+
+//linha 230
