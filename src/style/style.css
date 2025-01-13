@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap);
 *
  {
     margin: 0;
@@ -522,4 +523,59 @@ button {
 .btn-products:hover {
     background-color: #144965;
     transform: scale(1.05);
+}
+pizza-area { 
+    display:grid; 
+    grid-template-columns: repeat(3, 1fr); 
+} 
+ 
+ 
+.item--img { 
+    width:210px; 
+    height:200px; 
+    background-color:#eeeeee; 
+    border-radius:100px; 
+    box-shadow:0px 10px 50px rgba(15, 15, 15, 0.2); 
+} 
+ 
+
+.item--add { 
+    width:50px; 
+    height:50px; 
+    line-height:50px; 
+    border-radius:25px; 
+    background-color:#857272a6; 
+    text-align:center; 
+    color:#ffffff9d; 
+    font-size:22px; 
+    cursor:pointer; 
+    margin-top:-25px; 
+    transition:all ease .10s; 
+}
+.item--price { 
+    font-size:20px; 
+    color:#520606; 
+    margin-top:5px; 
+} 
+ 
+.item--name { 
+    font-size:25px; 
+    font-weight: bold; 
+    color:#350101; 
+    margin-top:5px; 
+}
+.item--remove { 
+    width:50px; 
+    height:50px; 
+    line-height:50px; 
+    border-radius:25px; 
+    background-color:#857272a6; 
+    text-align:center; 
+    color:#ffffff9d; 
+    font-size:22px; 
+    cursor:pointer; 
+    margin-top:-50px; 
+    transition:all ease .10s; 
+
+    
 }
