@@ -196,5 +196,20 @@ document.addEventListener('DOMContentLoaded', () => {
     addItemToCart("Produto Exemplo");
 });
 
+const finalizarCompra = () => {
+    seleciona('.cart--finalizar').addEventListener('click', () => {
+        console.log('Finalizar compra');
+        seleciona('aside').classList.remove('show');
+        seleciona('aside').style.left = '100vw';
+        seleciona('header').style.display = 'flex';
+        alert("Já ta pronto meu rei 👍");
+    });
+};
 
-//linha 230
+// Mapear Json para gerar a lista
+itemJson.map((item, index) => {
+    let item = document.querySelector('.models .item').cloneNode(true);
+    
+    seleciona('.WindowArea').append(item);
+    //linha  253
+})
