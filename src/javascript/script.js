@@ -240,11 +240,16 @@ const atualizaCarrinho = () => {
         seleciona('#qrcode').innerHTML = '';
     }
     
-const finalizarCompraButton = document.getElementById(finalizarCompra);
+const finalizarCompraButton = document.getElementById('finalizarCompra');
 const dadosModalArea = document.querySelector('.dadosModalArea');
 const dadosModalCancelButton = document.querySelector('.dadosModalCancelButton');
 const cancelarDadosButton = document.getElementById('cancelarDados');
 const formDados = document.getElementById('formDados');
 
-finalizarCompraButton.addEventListener('click', () => {})
-}
+finalizarCompraButton.addEventListener('click', () => {
+    dadosModalArea.style.display = 'block'; // Exibe Modal 
+});
+
+cancelarDadosButton
+
+};
