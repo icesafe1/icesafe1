@@ -1,28 +1,26 @@
-let modalKey = 0;
-let quantItens = 1;
-let cart = []; // carrinho
+// Variáveis Globais
+let modalKey = 0; // Chave do modal para identificar o item
+let quantItens = 1; // Quantidade inicial de itens no modal
+let cart = []; // Array para armazenar os itens no carrinho
 
 // Funções auxiliares
 const seleciona = (elemento) => document.querySelector(elemento);
 const selecionaTodos = (elemento) => document.querySelectorAll(elemento);
+const formatoReal = (valor) => valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
-const formatoReal = (valor) => {
-    return valor.toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'});
-};
-
-// Abrir e fechar o modal
+// Funções de controle do modal
 const abrirModal = () => {
-    seleciona('.windowArea').style.opacity = 0; // Controla a transparência
-    seleciona('.windowArea').style.display = 'flex';
-    setTimeout(() => seleciona('.windowArea').style.opacity = 1, 150);
+    seleciona('.windowArea').style.opacity = 0; // Define a transparência inicial
+    seleciona('.windowArea').style.display = 'flex'; // Exibe o modal
+    setTimeout(() => seleciona('.windowArea').style.opacity = 1, 150); // Animação de opacidade
 };
 
 const fecharModal = () => {
-    seleciona('.windowArea').style.opacity = 0; 
-    setTimeout(() => seleciona('.windowArea').style.display = 'none', 500);
+    seleciona('.windowArea').style.opacity = 0; // Reduz a opacidade para 0
+    setTimeout(() => seleciona('.windowArea').style.display = 'none', 500); // Oculta o modal após a animação
 };
 
-// Função para preencher os dados do item no modal
+// Função para preencher os dados do modal com informações do item
 const preencheDadosModal = (item) => {
     seleciona('.windowArea .item--img img').src = item.img;
     seleciona('.windowArea .item--name').innerHTML = item.name;
@@ -32,7 +30,7 @@ const preencheDadosModal = (item) => {
     seleciona('.windowArea .item--total').innerHTML = formatoReal(item.price[2] * quantItens);
 };
 
-// Função para pegar a chave do item e mostrar o modal
+// Função para obter a chave do item ao clicar e exibir o modal
 const pegarKey = (e) => {
     let key = e.target.closest('.-item').getAttribute('data-key');
     modalKey = key;
@@ -40,7 +38,7 @@ const pegarKey = (e) => {
     abrirModal();
 };
 
-// Função para mudar a quantidade no modal
+// Função para alterar a quantidade no modal
 const mudarQuantidade = () => {
     seleciona('.info--qtmais').addEventListener('click', () => {
         quantItens++;
@@ -57,12 +55,11 @@ const mudarQuantidade = () => {
     });
 };
 
-// Função para adicionar o item ao carrinho
+// Função para adicionar itens ao carrinho
 const adicionarNoCarrinho = () => {
     seleciona('.info--addButton').addEventListener('click', () => {
         let price = seleciona('.windowArea .item--price').innerHTML.replace('R$', '').trim();
         let identificador = itensJson[modalKey].id;
-
         let key = cart.findIndex((item) => item.identificador === identificador);
 
         if (key > -1) {
@@ -81,7 +78,7 @@ const adicionarNoCarrinho = () => {
     });
 };
 
-// Função para abrir o carrinho
+// Função para exibir o carrinho
 const abrirCarrinho = () => {
     if (cart.length > 0) {
         seleciona('aside').classList.add('show');
@@ -103,7 +100,7 @@ const fecharCarrinho = () => {
     });
 };
 
-// Função para atualizar o carrinho
+// Função para atualizar os itens no carrinho
 const atualizarCarrinho = () => {
     seleciona('.menu-openner span').innerHTML = cart.length;
 
@@ -148,54 +145,7 @@ const atualizarCarrinho = () => {
     }
 };
 
-// Função de exemplo para adicionar um item ao carrinho ao carregar a página
-document.addEventListener('DOMContentLoaded', () => {
-    addItemToCart("Produto Exemplo");
-});
-
-// Função para adicionar o item ao carrinho (exemplo)
-function addItemToCart(itemName) {
-    const item = {
-        name: itemName,
-        price: [0, 0, 99.99],  // Simulando um preço
-        img: "img/produto.jpg",  // Exemplo de imagem
-        description: "Descrição do Produto",
-        id: 1  // ID do produto
-    };
-    cart.push(item);
-    atualizarCarrinho();  // Atualiza a interface do carrinho
-}
-
-// Lógica para abrir e fechar o carrinho a partir do botão de imagem
-const cartButton = document.getElementById('imageButton');
-const cartSidebar = document.getElementById('cartSidebar');
-const closeCartButton = document.getElementById('closeCart');
-
-//abrir o carrinho
-cartButton.addEventListener('click', () => {
-    cartSidebar.classList.add('open');
-});
-
-// fechar o carrinho 
-closeCartButton.addEventListener('click', () => {
-    cartSidebar.classList.remove('open');
-});
-
-
-
-function addItemToCart(item) {
-    const cartItemsDiv = cartSidebar.querySelector('.cart-items');
-    const itemElement = document.createElement('p');
-    itemElement.textContent = item;
-    cartItemsDiv.appendChild(itemElement);
-}
-
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    addItemToCart("Produto Exemplo");
-});
-
+// Função para finalizar a compra
 const finalizarCompra = () => {
     seleciona('.cart--finalizar').addEventListener('click', () => {
         console.log('Finalizar compra');
@@ -206,10 +156,35 @@ const finalizarCompra = () => {
     });
 };
 
+// Evento ao carregar a página
+document.addEventListener('DOMContentLoaded', () => {
+    addItemToCart("Produto Exemplo");
+});
+
+// Lógica para abrir e fechar o carrinho a partir do botão
+const cartButton = document.getElementById('imageButton');
+const cartSidebar = document.getElementById('cartSidebar');
+const closeCartButton = document.getElementById('closeCart');
+
+cartButton.addEventListener('click', () => {
+    cartSidebar.classList.add('open');
+});
+
+closeCartButton.addEventListener('click', () => {
+    cartSidebar.classList.remove('open');
+});
+
+// Adicionar item ao carrinho (exemplo)
+function addItemToCart(item) {
+    const cartItemsDiv = cartSidebar.querySelector('.cart-items');
+    const itemElement = document.createElement('p');
+    itemElement.textContent = item;
+    cartItemsDiv.appendChild(itemElement);
+}
+
 // Mapear Json para gerar a lista
 itemJson.map((item, index) => {
     let item = document.querySelector('.models .item').cloneNode(true);
-    
     seleciona('.WindowArea').append(item);
-    //linha  253
-})
+    // linha 235
+});
