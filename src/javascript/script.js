@@ -270,7 +270,7 @@ formDados.addEventListener('submit', (event) => {
 
     dadosModalArea.style.display = 'none';
 
-    alert('Compra realizada copm sucesso!');
+    alert('Compra realizada com sucesso!');
 });
 
 };
