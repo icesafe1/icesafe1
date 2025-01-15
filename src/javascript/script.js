@@ -250,6 +250,27 @@ finalizarCompraButton.addEventListener('click', () => {
     dadosModalArea.style.display = 'block'; // Exibe Modal 
 });
 
-cancelarDadosButton
+dadosModalCancelButton.addEventListener('click', () => {
+    dadosModalArea.style.display = 'none'; 
+});
+
+cancelarDadosButton.addEventListener('click', () => {
+    dadosModalArea.style.display = 'none';
+})
+
+formDados.addEventListener('submit', (event) => {
+    event.preventDefault(); 
+
+    const nome = document.getElementById('nome').value;
+    const email = document.getElementById('email').value;
+    const telefone = document.getElementById('telefone').value;
+    const endereco = document.getElementById('endereco').value;
+
+    console.log('Dados recebidos:', nome, email, telefone, endereco);
+
+    dadosModalArea.style.display = 'none';
+
+    alert('Compra realizada copm sucesso!');
+});
 
 };
