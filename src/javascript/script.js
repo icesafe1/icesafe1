@@ -186,5 +186,65 @@ function addItemToCart(item) {
 itemJson.map((item, index) => {
     let item = document.querySelector('.models .item').cloneNode(true);
     seleciona('.WindowArea').append(item);
-    // linha 235
+    // linha 253
 });
+
+itemJson.querySelector(".item a").addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log('Clicou no item');
+
+    let chave = pegarKey(e);
+
+    abrirModal();
+
+    preencheDadosModal(item);
+
+    preencherTamanhos(chave);
+
+    seleciona('.itemInfo--qt').innerHTML = quantItens
+
+    escolherTamanhoPreco(chave);
+});
+
+botoesFechar();
+
+mudarQuantidade();
+
+adicionarNoCarrinho();
+atualizaCarrinho();
+fecharCarrinho();
+finalizarCompra();
+
+const atualizarQRCode = (total) => {
+    const qrcodeContainer = seleciona('#qrcode');
+    qrcodeContainer.innerHTML = ''; // Limpar qrcode anterior
+
+    const pagamentoLink = `https://pagamento-ficticio.com?valor=${total.toFixed(2)}`; // esse link é apenas um exemplo, alterar depois.
+
+    qrcodeContainer.toCanvas(qrcodeContainer, pagamentoLink, { width: 150 }, (error) =>{
+        if (error) console.error('Erro ao gerar QR Code:', error);
+    });
+};
+
+const atualizaCarrinho = () => {
+
+    if(cart.length > 0 ) {
+        total = subtotal - desconto
+
+        atualizarQRCode(total);
+
+        seleciona('.subtotal span:last-child').innerHTML = formatoReal(subtotal);
+        seleciona('.desconto span:last-child').innerHTML = formatoReal(desconto);
+        seleciona('.total span:last-child').innerHTML = formatoReal(total);
+    } else{
+        seleciona('#qrcode').innerHTML = '';
+    }
+    
+const finalizarCompraButton = document.getElementById(finalizarCompra);
+const dadosModalArea = document.querySelector('.dadosModalArea');
+const dadosModalCancelButton = document.querySelector('.dadosModalCancelButton');
+const cancelarDadosButton = document.getElementById('cancelarDados');
+const formDados = document.getElementById('formDados');
+
+finalizarCompraButton.addEventListener('click', () => {})
+}
